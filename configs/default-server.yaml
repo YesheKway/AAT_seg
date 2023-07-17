@@ -1,0 +1,50 @@
+# Training Configuration
+# ------------------------------- PATHS ---------------------------------------
+config_path: /config/singleTraining_config.yaml
+data_path: /your/path/to/data
+dst: /destination/to/store/results/at
+# ------------------------------- General Settings ----------------------------
+numpy_seed: 55
+pytroch_seed: 55
+# ------------------------------- Training Settings ---------------------------
+batch_size: 2
+learning_rate: 1e-4
+n_epochs: 1000
+loss_function: 'BCEDiceLoss' # options: multiclass_dice, BCEDiceLoss
+patience: 40 # early stopping patience 
+es_delta: 0.001 # early stopping delta
+es_verbose: False # early stopping verbose 
+lr_decay: False
+epoch_verbose: False # if True print loss per epoch to console
+kfolds: 5   # if set != 0 then k-fold training will be executed 
+# ------------------------------- Model Settings ------------------------------
+model_type: 'dynamic_unet_3D' # options are:  unet_3D_resent, dynamic_unet_3D
+patch_dim: [40, 320, 320]
+n_layer: 6
+n_filter: 24
+n_output_channels: 7
+n_input_channels: 1
+filter_activation: 'leaky_relu' # options are: 'relu', 'leaky_relu'
+final_activation: 'softmax'
+normalization_type: 'instance' # options are: instance, batch
+interpolation: 'bilinear'
+dropout: 0.0
+input_normalization: 'zeroone' # option: zeroone, zeromeanunitvariance
+upsample_type: 3D_upsample # options are 3D_upsample or transposed
+
+# ------------------------------- Data Generator Settings ---------------------
+augmentation: True
+shuffle: True
+n_workers: 0
+x_file_name: 'Abdo_fat.nii'
+y_file_name: 'Abdo_fat_gt.nii'
+
+# ------------------------ patch based training -------------------------------
+# This parameters can be ignored
+patch_training: False
+patch_size: 32
+max_queue_length: 300
+validation_batch_size_factor: 2 
+samples_per_volume: 10
+shuffle_subjects: True
+shuffle_patches: True

@@ -1,0 +1,13 @@
+torchsummary
+torchviz
+hiddenlayer
+matplotlib
+nibabel
+torchio
+pytorch-lightning
+pandas
+openpyxl
+statsmodels
+sklearn
+pyyaml
+medpy
